@@ -1,5 +1,3 @@
-Here's a more stylish and visually appealing README.md with better formatting, emojis, and clear sections:
-
 # 🚀 Flask Authentication App  
 
 A secure and lightweight authentication system built with Flask, featuring user authentication, password reset via email, and session management used to manage the birthdays of friends. ZZ m...
@@ -58,8 +56,3 @@ The app will be live at: http://127.0.0.1:5000/
 
 
 ---
-
-💡 Happy Coding! 🎉
-
-This version uses emojis, clear headers, and separators for readability and style. Let me know if you want any further refinements!
-
