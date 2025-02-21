@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/static/favicon.ico" rel="icon">
+    <link href="/static/styles.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('/static/bd.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #212529;  /* Changed from #fff to Bootstrap's default text-dark color */
+            overflow-y: auto; /* Ensure the body is scrollable */
+        }
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand-custom {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .main-content {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+            overflow-y: auto; /* Ensure the main content is scrollable */
+        }
+        .footer-custom {
+            background-color: #f8f9fa;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .alert-custom {
+            margin-top: 1rem;
+        }
+        .text-navy {
+            color: #1a237e !important;
+        }
+        .bg-info {
+            background-color: rgba(0, 188, 212, 0.5) !important;
+        }
+    </style>
+    <title>Celebrate: {% block title %}{% endblock %}</title>
+</head>
+<body class="{% if current_user.confirmed %}logged-in{% endif %}">
+    <nav class="navbar navbar-expand-md navbar-light navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand navbar-brand-custom" href="/"><span class="text-primary">🎂📔Birthday</span><span class="text-danger">Diaries</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if current_user.confirmed %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">🏠 Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/birthdays">🎊 View Birthdays</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add_birthday">🎁 Add Birthday</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">👤 Profile Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/update_profile/{{ current_user.id }}">⌮ Update Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/password_reset">🔐 Password Reset</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">🛑 Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><span class="badge bg-success">Log in</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register"><span class="badge bg-info">Create Account</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('main.googleLogin')}}"><img src="static/logo.jpg" alt="Google logo" style="width:20px; margin-right:10px;">Sign in with Google</a></li>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% if current_user.confirmed %}
+                <form class="d-flex" role="search" action="/search" method="post">
+                    <input class="form-control me-2" name="name" type="search" placeholder="Friend's Name" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    {% if get_flashed_messages() %}
+    <div class="alert alert-success text-center alert-custom" role="alert">
+        {{ get_flashed_messages() | join(" ") }}
+    </div>
+    {% endif %}
+    
+    <main class="container main-content">
+        {% block main %}{% endblock %}
+    </main>
+    
+    <footer class="footer-custom text-center">
+        <form action="https://validator.w3.org/check" enctype="multipart/form-data" method="post" target="_blank">
+            <input name="doctype" type="hidden" value="HTML5">
+            <input name="fragment" type="hidden">
+            <input alt="Validate" src="/static/I_heart_validator.png" type="image">
+        </form>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const html = '<!DOCTYPE ' +
+                document.doctype.name +
+                (document.doctype.publicId ? ' PUBLIC "' + document.doctype.publicId + '"' : '') +
+                (!document.doctype.publicId && document.doctype.systemId ? ' SYSTEM' : '') +
+                (document.doctype.systemId ? ' "' + document.doctype.systemId + '"' : '') +
+                '>\n' + document.documentElement.outerHTML;
+                document.querySelector('form[action="https://validator.w3.org/check"] > input[name="fragment"]').value = html;
+            });
+        </script>
+    </footer>
+</body>
+</html>

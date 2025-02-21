@@ -96,7 +96,7 @@ def calculate_age(birthdate) ->int: #Take an input birthdate and then output(->)
 def log(action):
     user_log = AuditLogs(user_id=current_user.id, action=action, timestamp=datetime.now())
     db.session.add(user_log)
-    db.session.commit()
+    db.session.commit
 
 
 #convert to python date.

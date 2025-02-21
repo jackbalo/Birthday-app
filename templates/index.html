@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <!-- Hero Section -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 text-white mb-4"><span class="badge text-bg-warning">Never Miss a Birthday 🎂 Again!</span></h1>
+            <div class="card bg-warning bg-opacity-25 mb-5">
+                <div class="card-body">
+                    <h3 class="card-title display-4" style="color: #343a40">
+                        <span class="badge bg-dark">Welcome to Birthday Diaries</span>
+                    </h3>
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">Your personal birthday management assistant that helps you keep track of all your important celebrations.</p>
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a href="/register" class="btn btn-primary btn-lg px-4">Get Started</a>
+                <a href="/login" class="btn btn-success btn-lg px-4">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row g-4 py-5">
+        <div class="text-center mb-4">
+            <h2 class="display-5 text-dark">
+                <span class="badge bg-info bg-opacity-75">Why Choose Birthday Diaries? 🌟</span>
+            </h2>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100" style="background-color: rgba(255, 193, 7, 0.2)">
+                <div class="card-body">
+                    <h3 class="card-title" style="color: #343a40">🎯 Never Forget</h3>
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">Get timely reminders for upcoming birthdays and special occasions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 bg-info bg-opacity-50">
+                <div class="card-body">
+                    <h3 class="card-title" style="color: #343a40">📱 Easy Access</h3>
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">Access your birthday calendar anytime, anywhere, on any device.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100" style="background-color: rgba(255, 193, 7, 0.2)">
+                <div class="card-body">
+                    <h3 class="card-title" style="color: #343a40">🎁 Gift Ideas</h3>
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">Get personalized gift suggestions for your friends and family.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="row py-5">
+        <div class="text-center mb-4">
+            <h2 class="display-5 text-dark">
+                <span class="badge bg-info bg-opacity-75">What Our Users Say 💝</span>
+            </h2>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card" style="background-color: rgba(255, 193, 7, 0.15)">
+                <div class="card-body">
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">"Never missed a birthday since I started using this app!"</p>
+                    <footer class="blockquote-footer" style="color: #343a40">Sarah Johnson</footer>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card" style="background-color: rgba(255, 193, 7, 0.15)">
+                <div class="card-body">
+                    <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 500">"The best birthday reminder app I've ever used!"</p>
+                    <footer class="blockquote-footer" style="color: #343a40">Mike Thompson</footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="row justify-content-center py-5">
+        <div class="col-md-8 text-center">
+            <div class="card bg-info bg-opacity-75 border-0">
+                <div class="card-body py-5">
+                    <h2 class="display-5 text-white mb-4">Ready to Start? 🚀</h2>
+                    <p class="lead text-white mb-4">Join thousands of users who never miss a birthday!</p>
+                    <a href="/register" class="btn btn-warning btn-lg px-5 py-3 fw-bold">Create Free Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
